@@ -1,6 +1,7 @@
 {
   "name": "tan-ui-kit",
   "version": "0.1.0",
+  "description": "A React component library built with Tailwind CSS v4 and shadcn/ui components",
   "type": "module",
   "main": "./dist/tan-ui-kit.cjs.js",
   "module": "./dist/tan-ui-kit.es.js",
@@ -16,6 +17,20 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tan-ahmed/tan-ui-kit.git"
+  },
+  "keywords": [
+    "react",
+    "component-library",
+    "ui-components",
+    "tailwindcss",
+    "shadcn",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -1,0 +1,30 @@
+# Source files
+src/
+*.ts
+*.tsx
+!*.d.ts
+
+# Config files
+tsconfig*.json
+vite.config.ts
+eslint.config.js
+index.html
+
+# Development files
+node_modules/
+.git/
+.gitignore
+.pnpm-store/
+
+# Build artifacts (we only want dist/)
+*.log
+.DS_Store
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Documentation (optional - you might want to include README)
+# README.md
