@@ -33,29 +33,32 @@ The Button component uses Tailwind utility classes (e.g., `bg-primary`, `bg-seco
 
 **Status:** ✅ Implemented - see package.json and .npmignore
 
+**Note:** Tailwind v4 requires the `@source` directive in the consuming project's CSS to scan node_modules. This is a Tailwind v4 requirement, not a limitation of this approach.
+
 ---
 
-## Option 2: Pre-generate All Utility Classes
+## Option 2: Pre-generate All Utility Classes ✅
 
 **Approach:** Build a complete CSS file with all possible utility classes pre-generated.
 
 **Implementation:**
-- Modify build process to generate all utility classes
-- Include complete CSS in `dist/tan-ui-kit.css`
+- Separate build step (`build:css`) generates CSS with all utility classes
+- Uses `src/build-styles.tsx` which renders all component variants
+- CSS is pre-generated and included in `dist/tan-ui-kit.css`
 - Consumers just import the CSS - no Tailwind scanning needed
 
 **Pros:**
 - ✅ No source files needed in package
-- ✅ Works without Tailwind configuration
-- ✅ Smaller source footprint
+- ✅ Works without Tailwind configuration (no `@source` directive needed)
+- ✅ Works out of the box - just import the CSS
+- ✅ Smaller source footprint (no src/ in package)
 
 **Cons:**
-- ❌ Much larger CSS file (includes many unused classes)
-- ❌ Less flexible - harder to customize
-- ❌ Need to regenerate CSS when adding new components
-- ❌ May conflict with consumer's Tailwind setup
+- ❌ CSS file includes all used classes (but optimized - only what's needed)
+- ❌ Need to regenerate CSS when adding new components/variants
+- ❌ Slightly larger CSS than JIT (but still reasonable ~11KB)
 
-**Status:** Not implemented
+**Status:** ✅ Implemented - see `vite.css.config.ts` and `scripts/build-css.js`
 
 ---
 

@@ -18,8 +18,7 @@
     }
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -40,7 +39,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build:css": "vite build --config vite.css.config.ts && node scripts/build-css.js",
+    "build": "npm run build:css && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepublishOnly": "npm run build"
@@ -68,6 +68,7 @@
     "globals": "^15.0.0",
     "tailwind-merge": "^2.5.0",
     "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.1.18",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",

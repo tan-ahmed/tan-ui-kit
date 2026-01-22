@@ -2,13 +2,29 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
-import { copyFileSync, existsSync, writeFileSync } from 'fs'
+import { copyFileSync, existsSync, writeFileSync, readFileSync } from 'fs'
 
-// Plugin to copy styles.d.ts to dist
-const copyStylesTypes = () => {
+// Plugin to preserve pre-generated CSS and copy styles.d.ts
+const preserveCSSAndTypes = () => {
+  let cssBackup: string | null = null
+  
   return {
-    name: 'copy-styles-types',
+    name: 'preserve-css-and-types',
+    buildStart() {
+      // Backup the pre-generated CSS before build
+      const cssPath = resolve(__dirname, 'dist/tan-ui-kit.css')
+      if (existsSync(cssPath)) {
+        cssBackup = readFileSync(cssPath, 'utf-8')
+      }
+    },
     writeBundle() {
+      // Restore the pre-generated CSS after build
+      if (cssBackup) {
+        const cssPath = resolve(__dirname, 'dist/tan-ui-kit.css')
+        writeFileSync(cssPath, cssBackup)
+      }
+      
+      // Copy styles.d.ts
       const srcFile = resolve(__dirname, 'src/styles.d.ts')
       const destFile = resolve(__dirname, 'dist/styles.d.ts')
       if (existsSync(srcFile)) {
@@ -28,12 +44,12 @@ export default defineConfig({
     react(),
     dts({
       include: ['src/**/*'],
-      exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/styles.d.ts', 'src/main.tsx', 'src/App.tsx', 'src/App.css', 'src/index.css'],
+      exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/styles.d.ts', 'src/main.tsx', 'src/App.tsx', 'src/App.css', 'src/index.css', 'src/build-styles.tsx'],
       outDir: 'dist',
       insertTypesEntry: true,
       tsconfigPath: './tsconfig.app.json',
     }),
-    copyStylesTypes(),
+    preserveCSSAndTypes(),
   ],
   resolve: {
     alias: {
@@ -56,7 +72,8 @@ export default defineConfig({
           'react/jsx-runtime': 'react/jsx-runtime'
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'tan-ui-kit.css'
+          // Don't generate CSS in lib build - we use the pre-generated one from build:css
+          if (assetInfo.name === 'style.css') return 'tan-ui-kit-temp.css'
           return assetInfo.name || 'asset'
         }
       }

@@ -45,6 +45,37 @@ Make sure to install these in your project:
 pnpm add react react-dom @radix-ui/react-slot class-variance-authority clsx tailwind-merge
 ```
 
+## Setup
+
+### 1. Install Peer Dependencies
+
+```bash
+pnpm add react react-dom @radix-ui/react-slot class-variance-authority clsx tailwind-merge tailwindcss@^4.0.0
+```
+
+### 2. Configure Tailwind CSS v4
+
+This package uses **Tailwind CSS v4**. In your main CSS file (e.g., `src/index.css` or `src/main.css`), add:
+
+```css
+@import "tailwindcss";
+
+/* Your other styles... */
+```
+
+**That's it!** The package includes pre-generated CSS with all utility classes, so no additional configuration is needed.
+
+### 3. Import the Component and Styles
+
+```tsx
+import { Button } from '@tan-ahmed/tan-ui-kit'
+import '@tan-ahmed/tan-ui-kit/styles'
+
+function App() {
+  return <Button variant="destructive">Click me</Button>
+}
+```
+
 ## Usage
 
 ```tsx
@@ -52,7 +83,7 @@ import { Button } from '@tan-ahmed/tan-ui-kit'
 import '@tan-ahmed/tan-ui-kit/styles'
 
 function App() {
-  return <Button>Click me</Button>
+  return <Button variant="secondary">Click me</Button>
 }
 ```
 

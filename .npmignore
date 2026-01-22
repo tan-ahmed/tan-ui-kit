@@ -1,10 +1,8 @@
-# Source files - INCLUDED for Tailwind scanning (Option 1)
-# src/  (commented out to include source files)
+# Source files - NOT needed (Option 2: pre-generated CSS)
+src/
 *.ts
 *.tsx
 !*.d.ts
-!src/**/*.ts
-!src/**/*.tsx
 
 # Config files
 tsconfig*.json
