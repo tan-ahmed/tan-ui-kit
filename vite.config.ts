@@ -2,6 +2,25 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
+import { copyFileSync, existsSync, writeFileSync } from 'fs'
+
+// Plugin to copy styles.d.ts to dist
+const copyStylesTypes = () => {
+  return {
+    name: 'copy-styles-types',
+    writeBundle() {
+      const srcFile = resolve(__dirname, 'src/styles.d.ts')
+      const destFile = resolve(__dirname, 'dist/styles.d.ts')
+      if (existsSync(srcFile)) {
+        copyFileSync(srcFile, destFile)
+      } else {
+        // Create it if it doesn't exist
+        const content = `// Type declaration for styles import\ndeclare const styles: string;\nexport default styles;\n`
+        writeFileSync(destFile, content)
+      }
+    }
+  }
+}
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,6 +33,7 @@ export default defineConfig({
       insertTypesEntry: true,
       tsconfigPath: './tsconfig.app.json',
     }),
+    copyStylesTypes(),
   ],
   resolve: {
     alias: {
