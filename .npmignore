@@ -1,8 +1,10 @@
-# Source files
-src/
+# Source files - INCLUDED for Tailwind scanning (Option 1)
+# src/  (commented out to include source files)
 *.ts
 *.tsx
 !*.d.ts
+!src/**/*.ts
+!src/**/*.tsx
 
 # Config files
 tsconfig*.json
