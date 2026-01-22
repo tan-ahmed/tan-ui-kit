@@ -9,9 +9,10 @@ export default defineConfig({
     react(),
     dts({
       include: ['src/**/*'],
-      exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+      exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/styles.d.ts', 'src/main.tsx', 'src/App.tsx', 'src/App.css', 'src/index.css'],
       outDir: 'dist',
       insertTypesEntry: true,
+      tsconfigPath: './tsconfig.app.json',
     }),
   ],
   resolve: {
