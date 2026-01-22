@@ -1,73 +1,77 @@
-# React + TypeScript + Vite
+# @tan-ahmed/tan-ui-kit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React component library built with Tailwind CSS v4 and shadcn/ui components.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Recommended: Using pnpm
+```bash
+pnpm add @tan-ahmed/tan-ui-kit
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Using yarn
+```bash
+yarn add @tan-ahmed/tan-ui-kit
 ```
+
+### Using npm
+```bash
+npm install @tan-ahmed/tan-ui-kit
+```
+
+**Note:** If you encounter the error `Cannot read properties of null (reading 'matches')` with npm, this is a known npm bug with Node.js 23.x. Please use one of the following workarounds:
+
+1. Use pnpm or yarn (recommended)
+2. Use `npm install --legacy-peer-deps`
+3. Clear npm cache: `npm cache clean --force` and retry
+4. Update npm: `npm install -g npm@latest`
+
+See [INSTALLATION_TROUBLESHOOTING.md](./INSTALLATION_TROUBLESHOOTING.md) for more details.
+
+## Peer Dependencies
+
+This package requires the following peer dependencies:
+
+- `react`: ^18.0.0 || ^19.0.0
+- `react-dom`: ^18.0.0 || ^19.0.0
+- `@radix-ui/react-slot`: ^1.0.2
+- `class-variance-authority`: ^0.7.0
+- `clsx`: ^2.1.0
+- `tailwind-merge`: ^2.5.0
+
+Make sure to install these in your project:
+
+```bash
+pnpm add react react-dom @radix-ui/react-slot class-variance-authority clsx tailwind-merge
+```
+
+## Usage
+
+```tsx
+import { Button } from '@tan-ahmed/tan-ui-kit'
+import '@tan-ahmed/tan-ui-kit/styles'
+
+function App() {
+  return <Button>Click me</Button>
+}
+```
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start dev server
+pnpm dev
+
+# Build
+pnpm build
+
+# Lint
+pnpm lint
+```
+
+## License
+
+MIT
