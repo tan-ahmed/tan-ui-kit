@@ -1,5 +1,5 @@
 {
-  "name": "tan-ui-kit",
+  "name": "@tan-ahmed/tan-ui-kit",
   "version": "0.1.0",
   "description": "A React component library built with Tailwind CSS v4 and shadcn/ui components",
   "type": "module",
@@ -20,6 +20,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/tan-ahmed/tan-ui-kit.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "react",
