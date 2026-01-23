@@ -26,5 +26,4 @@ node_modules/
 *.spec.ts
 *.spec.tsx
 
-# Documentation (optional - you might want to include README)
-# README.md
+# Documentation - README.md is included (explicitly listed in package.json files)
