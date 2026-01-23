@@ -66,7 +66,7 @@ export default defineConfig({
       fileName: (format) => `tan-ui-kit.${format}.js`
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', '@radix-ui/react-slot', 'class-variance-authority', 'clsx', 'tailwind-merge'],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: {
           react: 'React',

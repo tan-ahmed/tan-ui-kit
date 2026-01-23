@@ -37,26 +37,12 @@ This package requires the following peer dependencies:
 
 - `react`: ^18.0.0 || ^19.0.0
 - `react-dom`: ^18.0.0 || ^19.0.0
-- `@radix-ui/react-slot`: ^1.0.2
-- `class-variance-authority`: ^0.7.0
-- `clsx`: ^2.1.0
-- `tailwind-merge`: ^2.5.0
 
-Make sure to install these in your project:
-
-```bash
-pnpm add @radix-ui/react-slot class-variance-authority clsx tailwind-merge
-```
+All other dependencies (base-ui, class-variance-authority, clsx, tailwind-merge) are bundled with the library, so you don't need to install them separately.
 
 ## Setup
 
-### 1. Install Peer Dependencies
-
-```bash
-pnpm add @radix-ui/react-slot class-variance-authority clsx tailwind-merge tailwindcss@^4.0.0
-```
-
-### 2. Configure Tailwind CSS v4
+### 1. Configure Tailwind CSS v4
 
 This package uses **Tailwind CSS v4**. In your main CSS file (e.g., `src/index.css` or `src/main.css`), add:
 
@@ -68,7 +54,7 @@ This package uses **Tailwind CSS v4**. In your main CSS file (e.g., `src/index.c
 
 **That's it!** The package includes pre-generated CSS with all utility classes, so no additional configuration is needed.
 
-### 3. Import the Component and Styles
+### 2. Import the Component and Styles
 
 **Important:** Import the styles in your main entry point file:
 

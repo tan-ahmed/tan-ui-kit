@@ -1,6 +1,6 @@
 {
   "name": "@tan-ahmed/tan-ui-kit",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A React component library built with Tailwind CSS v4 and base-ui components",
   "type": "module",
   "module": "./dist/tan-ui-kit.es.js",
@@ -45,11 +45,8 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "tailwind-merge": "^2.5.0"
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -74,6 +71,10 @@
     "vite-plugin-dts": "^4.5.4"
   },
   "dependencies": {
-    "lucide-react": "^0.563.0"
+    "@base-ui/react": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-react": "^0.563.0",
+    "tailwind-merge": "^2.5.0"
   }
 }

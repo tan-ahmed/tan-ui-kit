@@ -103,32 +103,36 @@ pnpm add -D \
   typescript-eslint
 ```
 
-### Install Peer Dependencies (for development)
+### Install Dependencies (for development)
 
 ```bash
 pnpm add \
   react \
   react-dom \
-  @radix-ui/react-slot \
+  @base-ui/react \
   class-variance-authority \
   clsx \
   tailwind-merge
 ```
 
-### Update package.json with Peer Dependencies
+### Update package.json with Dependencies
 
 ```json
 {
   "peerDependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
     "tailwind-merge": "^2.5.0"
   }
 }
 ```
+
+**Note:** Utility dependencies (base-ui, class-variance-authority, clsx, tailwind-merge) are bundled with your library, so users don't need to install them separately. Only React and React-DOM remain as peer dependencies.
 
 ---
 
@@ -272,7 +276,7 @@ export default defineConfig({
       fileName: (format) => `your-library.${format}.js`
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', '@radix-ui/react-slot', 'class-variance-authority', 'clsx', 'tailwind-merge'],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: {
           react: 'React',
@@ -541,7 +545,7 @@ Example component using `class-variance-authority`:
 
 ```typescript
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
+import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
@@ -575,25 +579,20 @@ const buttonVariants = cva(
   }
 )
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  ...props
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
 }
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Button.displayName = "Button"
 
 export { Button, buttonVariants }
 ```
@@ -702,7 +701,7 @@ function App() {
 1. **CSS Generation**: Always update `src/build-styles.tsx` when adding new components or variants
 2. **Build Order**: CSS generation (`build:css`) must run before the main build
 3. **No Source Files**: Don't include `src/` in the published package - only `dist/`
-4. **Peer Dependencies**: All React and utility dependencies should be peer dependencies
+4. **Dependencies**: Bundle utility dependencies (base-ui, class-variance-authority, clsx, tailwind-merge) in your library for easier installation. Only React and React-DOM should be peer dependencies.
 5. **TypeScript**: Use separate tsconfig files for app code and build tools
 6. **CSS Preservation**: The vite plugin preserves the pre-generated CSS during the main build
 
