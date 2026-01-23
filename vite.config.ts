@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
@@ -6,7 +6,7 @@ import dts from "vite-plugin-dts";
 import { copyFileSync, existsSync, writeFileSync, readFileSync } from "fs";
 
 // Plugin to preserve pre-generated CSS and copy styles.d.ts
-const preserveCSSAndTypes = () => {
+const preserveCSSAndTypes = (): Plugin => {
   let cssBackup: string | null = null;
 
   return {
@@ -40,7 +40,7 @@ const preserveCSSAndTypes = () => {
 };
 
 // Plugin to preserve "use client" directive in build output
-const preserveUseClient = () => {
+const preserveUseClient = (): Plugin => {
   return {
     name: "preserve-use-client",
     writeBundle() {
