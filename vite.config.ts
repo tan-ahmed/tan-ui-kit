@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
+import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
 import dts from 'vite-plugin-dts'
 import { copyFileSync, existsSync, writeFileSync, readFileSync } from 'fs'
 
@@ -12,7 +13,7 @@ const preserveCSSAndTypes = () => {
     name: 'preserve-css-and-types',
     buildStart() {
       // Backup the pre-generated CSS before build
-      const cssPath = resolve(__dirname, 'dist/tan-ui-kit.css')
+      const cssPath = path.resolve(__dirname, 'dist/tan-ui-kit.css')
       if (existsSync(cssPath)) {
         cssBackup = readFileSync(cssPath, 'utf-8')
       }
@@ -20,13 +21,13 @@ const preserveCSSAndTypes = () => {
     writeBundle() {
       // Restore the pre-generated CSS after build
       if (cssBackup) {
-        const cssPath = resolve(__dirname, 'dist/tan-ui-kit.css')
+        const cssPath = path.resolve(__dirname, 'dist/tan-ui-kit.css')
         writeFileSync(cssPath, cssBackup)
       }
       
       // Copy styles.d.ts
-      const srcFile = resolve(__dirname, 'src/styles.d.ts')
-      const destFile = resolve(__dirname, 'dist/styles.d.ts')
+      const srcFile = path.resolve(__dirname, 'src/styles.d.ts')
+      const destFile = path.resolve(__dirname, 'dist/styles.d.ts')
       if (existsSync(srcFile)) {
         copyFileSync(srcFile, destFile)
       } else {
@@ -42,6 +43,7 @@ const preserveCSSAndTypes = () => {
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     dts({
       include: ['src/**/*'],
       exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/styles.d.ts', 'src/main.tsx', 'src/App.tsx', 'src/App.css', 'src/index.css', 'src/build-styles.tsx'],
@@ -53,12 +55,12 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'TanUIKit',
       formats: ['es', 'cjs'],
       fileName: (format) => `tan-ui-kit.${format}.js`

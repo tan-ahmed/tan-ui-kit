@@ -1,6 +1,6 @@
 # @tan-ahmed/tan-ui-kit
 
-A React component library built with Tailwind CSS v4 and shadcn/ui components.
+A React component library built with Tailwind CSS v4 and base-ui components.
 
 ## Installation
 

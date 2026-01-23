@@ -1,7 +1,7 @@
 // This file is ONLY used during build to generate CSS
 // It imports all components with all variants to ensure Tailwind generates all utility classes
 
-import './styles.css'
+import './index.css'
 import { Button } from './components/ui/button'
 
 // Render all variants to ensure CSS is generated
