@@ -29,11 +29,7 @@ npm install @tan-ahmed/tan-ui-kit
 3. Clear npm cache: `npm cache clean --force` and retry
 4. Update npm: `npm install -g npm@latest`
 
-See [INSTALLATION_TROUBLESHOOTING.md](./INSTALLATION_TROUBLESHOOTING.md) for more details.
-
 ## Usage
-
-The package includes pre-generated CSS with all utility classes, so **no Tailwind configuration is needed** - it works out of the box!
 
 ### 1. Import styles in your entry file
 
