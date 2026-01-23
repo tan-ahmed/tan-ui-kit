@@ -47,7 +47,7 @@ Import the styles once in your main entry point file:
 
 ```tsx
 // In your main entry point file (e.g., src/main.tsx, app.tsx, etc.)
-import "@tan-ahmed/tan-ui-kit/styles"; // ⚠️ Import this at the top of your entry file
+import "@tan-ahmed/tan-ui-kit/styles";
 ```
 
 ### 2. Use components anywhere
@@ -61,15 +61,6 @@ function MyComponent() {
   return <Button variant="secondary">Click me</Button>;
 }
 ```
-
-## Peer Dependencies
-
-This package requires the following peer dependencies:
-
-- `react`: ^18.0.0 || ^19.0.0
-- `react-dom`: ^18.0.0 || ^19.0.0
-
-All other dependencies (base-ui, class-variance-authority, clsx, tailwind-merge) are bundled with the library, so you don't need to install them separately.
 
 ## License
 
