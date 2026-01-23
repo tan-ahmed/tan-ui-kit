@@ -31,32 +31,13 @@ npm install @tan-ahmed/tan-ui-kit
 
 See [INSTALLATION_TROUBLESHOOTING.md](./INSTALLATION_TROUBLESHOOTING.md) for more details.
 
-## Peer Dependencies
+## Usage
 
-This package requires the following peer dependencies:
+The package includes pre-generated CSS with all utility classes, so **no Tailwind configuration is needed** - it works out of the box!
 
-- `react`: ^18.0.0 || ^19.0.0
-- `react-dom`: ^18.0.0 || ^19.0.0
+### 1. Import styles in your entry file
 
-All other dependencies (base-ui, class-variance-authority, clsx, tailwind-merge) are bundled with the library, so you don't need to install them separately.
-
-## Setup
-
-### 1. Configure Tailwind CSS v4
-
-This package uses **Tailwind CSS v4**. In your main CSS file (e.g., `src/index.css` or `src/main.css`), add:
-
-```css
-@import "tailwindcss";
-
-/* Your other styles... */
-```
-
-**That's it!** The package includes pre-generated CSS with all utility classes, so no additional configuration is needed.
-
-### 2. Import the Component and Styles
-
-**Important:** Import the styles in your main entry point file:
+Import the styles once in your main entry point file:
 
 - **React (Vite/CRA)**: `src/main.tsx` or `src/index.tsx`
 - **Next.js (App Router)**: `app/layout.tsx` or `app/page.tsx`
@@ -67,19 +48,13 @@ This package uses **Tailwind CSS v4**. In your main CSS file (e.g., `src/index.c
 ```tsx
 // In your main entry point file (e.g., src/main.tsx, app.tsx, etc.)
 import "@tan-ahmed/tan-ui-kit/styles"; // ⚠️ Import this at the top of your entry file
-import { Button } from "@tan-ahmed/tan-ui-kit";
-
-function App() {
-  return <Button variant="destructive">Click me</Button>;
-}
 ```
 
-## Usage
+### 2. Use components anywhere
 
-Import the styles once in your main entry point file (see Setup section above), then use components anywhere:
+After importing the styles, you can use components anywhere in your app:
 
 ```tsx
-// In your component files, you only need to import the component
 import { Button } from "@tan-ahmed/tan-ui-kit";
 
 function MyComponent() {
@@ -87,21 +62,14 @@ function MyComponent() {
 }
 ```
 
-## Development
+## Peer Dependencies
 
-```bash
-# Install dependencies
-pnpm install
+This package requires the following peer dependencies:
 
-# Start dev server
-pnpm dev
+- `react`: ^18.0.0 || ^19.0.0
+- `react-dom`: ^18.0.0 || ^19.0.0
 
-# Build
-pnpm build
-
-# Lint
-pnpm lint
-```
+All other dependencies (base-ui, class-variance-authority, clsx, tailwind-merge) are bundled with the library, so you don't need to install them separately.
 
 ## License
 
