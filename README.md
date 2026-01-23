@@ -5,16 +5,19 @@ A React component library built with Tailwind CSS v4 and shadcn/ui components.
 ## Installation
 
 ### Recommended: Using pnpm
+
 ```bash
 pnpm add @tan-ahmed/tan-ui-kit
 ```
 
 ### Using yarn
+
 ```bash
 yarn add @tan-ahmed/tan-ui-kit
 ```
 
 ### Using npm
+
 ```bash
 npm install @tan-ahmed/tan-ui-kit
 ```
@@ -42,7 +45,7 @@ This package requires the following peer dependencies:
 Make sure to install these in your project:
 
 ```bash
-pnpm add react react-dom @radix-ui/react-slot class-variance-authority clsx tailwind-merge
+pnpm add @radix-ui/react-slot class-variance-authority clsx tailwind-merge
 ```
 
 ## Setup
@@ -50,7 +53,7 @@ pnpm add react react-dom @radix-ui/react-slot class-variance-authority clsx tail
 ### 1. Install Peer Dependencies
 
 ```bash
-pnpm add react react-dom @radix-ui/react-slot class-variance-authority clsx tailwind-merge tailwindcss@^4.0.0
+pnpm add @radix-ui/react-slot class-variance-authority clsx tailwind-merge tailwindcss@^4.0.0
 ```
 
 ### 2. Configure Tailwind CSS v4
@@ -67,23 +70,34 @@ This package uses **Tailwind CSS v4**. In your main CSS file (e.g., `src/index.c
 
 ### 3. Import the Component and Styles
 
+**Important:** Import the styles in your main entry point file:
+
+- **React (Vite/CRA)**: `src/main.tsx` or `src/index.tsx`
+- **Next.js (App Router)**: `app/layout.tsx` or `app/page.tsx`
+- **Next.js (Pages Router)**: `pages/_app.tsx`
+- **TanStack Start**: `app.tsx`
+- **Other frameworks**: Your main entry point file
+
 ```tsx
-import { Button } from '@tan-ahmed/tan-ui-kit'
-import '@tan-ahmed/tan-ui-kit/styles'
+// In your main entry point file (e.g., src/main.tsx, app.tsx, etc.)
+import "@tan-ahmed/tan-ui-kit/styles"; // ⚠️ Import this at the top of your entry file
+import { Button } from "@tan-ahmed/tan-ui-kit";
 
 function App() {
-  return <Button variant="destructive">Click me</Button>
+  return <Button variant="destructive">Click me</Button>;
 }
 ```
 
 ## Usage
 
-```tsx
-import { Button } from '@tan-ahmed/tan-ui-kit'
-import '@tan-ahmed/tan-ui-kit/styles'
+Import the styles once in your main entry point file (see Setup section above), then use components anywhere:
 
-function App() {
-  return <Button variant="secondary">Click me</Button>
+```tsx
+// In your component files, you only need to import the component
+import { Button } from "@tan-ahmed/tan-ui-kit";
+
+function MyComponent() {
+  return <Button variant="secondary">Click me</Button>;
 }
 ```
 
