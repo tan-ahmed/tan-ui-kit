@@ -67,7 +67,17 @@ const preserveUseClient = (): Plugin => {
 export default defineConfig({
   plugins: [react(), tailwindcss(), dts({
     include: ["src/**/*"],
-    exclude: ["src/**/*.test.ts", "src/**/*.test.tsx", "src/styles.d.ts", "src/main.tsx", "src/App.tsx", "src/App.css", "src/index.css", "src/build-styles.tsx"],
+    exclude: [
+      "src/**/*.test.ts",
+      "src/**/*.test.tsx",
+      "src/stories/**",
+      "src/styles.d.ts",
+      "src/main.tsx",
+      "src/App.tsx",
+      "src/App.css",
+      "src/index.css",
+      "src/build-styles.tsx",
+    ],
     outDir: "dist",
     insertTypesEntry: true,
     tsconfigPath: "./tsconfig.app.json"
