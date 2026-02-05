@@ -1,25 +1,35 @@
+import * as React from "react"
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 
 import { cn } from "@/lib/utils"
 import { ChevronDown } from "lucide-react"
 import { accordionVariants } from "./accordion.variants"
 
+
 export type AccordionProps = AccordionPrimitive.Root.Props & {
   /** When true, multiple sections can be open at once. */
   multiple?: boolean
+  /** Colour of the divider between accordion items. Useful for CMS/theming. */
+  dividerColor?: string
 }
 
 function Accordion({
   className,
   multiple = false,
+  dividerColor,
+  style,
   children,
   ...rootProps
 }: AccordionProps) {
+  const cssVars = {
+    ...(dividerColor != null && { "--accordion-divider": dividerColor }),
+  } as React.CSSProperties
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
       multiple={multiple}
       className={cn(accordionVariants(), className)}
+      style={{ ...cssVars, ...style }}
       {...rootProps}
     >
       {children}
@@ -29,14 +39,21 @@ function Accordion({
 
 function AccordionItem({
   className,
+  children,
   ...props
 }: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("border-b border-border last:border-b-0", className)}
+      className={cn("group", className)}
       {...props}
-    />
+    >
+      {children}
+      <div
+        aria-hidden
+        className="border-b border-(--accordion-divider,var(--color-gray-800)) mx-5 group-last:border-b-0"
+      />
+    </AccordionPrimitive.Item>
   )
 }
 
@@ -61,7 +78,7 @@ function AccordionTrigger({
       >
         {children}
         <ChevronDown
-          className="shrink-0 text-muted-foreground transition-transform duration-200"
+          className="shrink-0 text-black transition-transform duration-200"
           size={20}
         />
       </AccordionPrimitive.Trigger>
