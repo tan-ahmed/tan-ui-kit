@@ -62,3 +62,10 @@ export const Default: Story = {
   render: (args) => <SampleAccordion {...args} />,
 };
 
+export const FullWidth: Story = {
+  args: {
+    fullWidth: true,
+  },
+  render: (args) => <SampleAccordion {...args} />,
+};
+
