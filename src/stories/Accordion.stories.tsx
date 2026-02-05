@@ -12,15 +12,19 @@ const meta = {
   component: Accordion,
   tags: ['autodocs'],
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   argTypes: {
     multiple: {
       control: 'boolean',
     },
+    fullWidth: {
+      control: 'boolean',
+    },
   },
   args: {
     multiple: false,
+    fullWidth: false,
   },
 } satisfies Meta<typeof Accordion>;
 
@@ -29,7 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 function SampleAccordion(props: React.ComponentProps<typeof Accordion>) {
   return (
-    <div className="w-[360px]">
+    <div className="w-full">
       <Accordion {...props}>
         <AccordionItem value="item-1">
           <AccordionTrigger>What is Tan UI Kit?</AccordionTrigger>

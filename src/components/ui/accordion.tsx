@@ -1,14 +1,30 @@
 import * as React from "react"
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { ChevronDown } from "lucide-react"
-import { accordionVariants } from "./accordion.variants"
 
+const accordionVariants = cva(
+  "rounded-lg overflow-hidden border border-border bg-gray-100",
+  {
+    variants: {
+      fullWidth: {
+        true: "w-full",
+        false: "max-w-md",
+      },
+    },
+    defaultVariants: {
+      fullWidth: false,
+    },
+  }
+)
 
 export type AccordionProps = AccordionPrimitive.Root.Props & {
   /** When true, multiple sections can be open at once. */
   multiple?: boolean
+  /** When true, the accordion stretches to fill the width of its container. */
+  fullWidth?: boolean
   /** Colour of the divider between accordion items. Useful for CMS/theming. */
   dividerColor?: string
 }
@@ -16,6 +32,7 @@ export type AccordionProps = AccordionPrimitive.Root.Props & {
 function Accordion({
   className,
   multiple = false,
+  fullWidth = false,
   dividerColor,
   style,
   children,
@@ -28,7 +45,7 @@ function Accordion({
     <AccordionPrimitive.Root
       data-slot="accordion"
       multiple={multiple}
-      className={cn(accordionVariants(), className)}
+      className={cn(accordionVariants({ fullWidth }), className)}
       style={{ ...cssVars, ...style }}
       {...rootProps}
     >
