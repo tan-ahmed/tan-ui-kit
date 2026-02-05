@@ -3,6 +3,12 @@
 
 import './index.css'
 import { Button } from './components/ui/button'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from './components/ui/accordion'
 
 // Render all variants to ensure CSS is generated
 export default function BuildStyles() {
@@ -27,6 +33,12 @@ export default function BuildStyles() {
       <Button variant="link" size="default" />
       <Button variant="link" size="sm" />
       <Button variant="link" size="lg" />
+      <Accordion collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Trigger</AccordionTrigger>
+          <AccordionContent>Content</AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </>
   )
 }
