@@ -15,15 +15,11 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
-    collapsible: {
-      control: 'boolean',
-    },
     multiple: {
       control: 'boolean',
     },
   },
   args: {
-    collapsible: true,
     multiple: false,
   },
 } satisfies Meta<typeof Accordion>;
@@ -59,13 +55,6 @@ function SampleAccordion(props: React.ComponentProps<typeof Accordion>) {
 }
 
 export const Default: Story = {
-  render: (args) => <SampleAccordion {...args} />,
-};
-
-export const MultipleOpen: Story = {
-  args: {
-    multiple: true,
-  },
   render: (args) => <SampleAccordion {...args} />,
 };
 
