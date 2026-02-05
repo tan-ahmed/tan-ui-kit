@@ -1,6 +1,6 @@
 {
   "name": "@tan-ahmed/tan-ui-kit",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "A React component library built with Tailwind CSS v4 and base-ui",
   "type": "module",
   "module": "./dist/tan-ui-kit.es.js",
